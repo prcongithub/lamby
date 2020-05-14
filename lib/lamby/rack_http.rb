@@ -54,7 +54,7 @@ module Lamby
     #
     def path_info
       stage = event.dig('requestContext', 'stage')
-      spath = event.dig('requestContext', 'http', 'path') || event.dig('requestContext', 'path')
+      spath = event.dig('requestContext', 'http', 'path') || event.dig('requestContext', 'path') || event.dig('path')
       spath.sub /\A\/#{stage}/, ''
     end
 
@@ -74,7 +74,5 @@ module Lamby
         event.dig('requestContext', 'protocol') ||
         'HTTP/1.1'
     end
-
-
   end
 end
